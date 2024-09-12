@@ -21,7 +21,7 @@ namespace SelfRegistrationService
         public IActionResult GetServers()
         {
             if (serverAdresses.Count == 0)
-                return NotFound("No active gameservers.");
+                return NoContent();
 
             return Ok(serverAdresses);
         }
