@@ -8,7 +8,6 @@ namespace SelfRegistrationService
     {
         public static void Main(string[] args)
         {
-            Environment.SetEnvironmentVariable("DANIATOKEN", "heElloooooooOoooooOoooooooooOoooooooooOooooooooooooooo????");
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers();
