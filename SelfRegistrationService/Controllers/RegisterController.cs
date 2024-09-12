@@ -7,17 +7,17 @@ namespace SelfRegistrationService
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        private List<string> serverAdresses = new();
+        private static List<string> serverAdresses = new();
 
         [HttpPost("Register")]
-        public IActionResult RegisterServer([FromBody] string address)
+        public IActionResult RegisterServer(string address)
         {
             Console.WriteLine("incoming address: " + address);
             serverAdresses.Add(address);
-            return Ok("Server registered successfully.");
+            return Ok("Server registered successfully. " + address);
         }
 
-        [HttpGet("GetServers"), Authorize]
+        [HttpGet("GetServers")]
         public IActionResult GetServers()
         {
             if (serverAdresses.Count == 0)
