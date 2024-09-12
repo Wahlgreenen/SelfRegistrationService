@@ -10,11 +10,14 @@ namespace SelfRegistrationService
         private static List<string> serverAdresses = new();
 
         [HttpPost("Register")]
-        public IActionResult RegisterServer(string address)
+        public IActionResult RegisterServer([FromBody] RegisterRequest request)
         {
-            Console.WriteLine("incoming address: " + address);
-            serverAdresses.Add(address);
-            return Ok("Server registered successfully. " + address);
+            if (string.IsNullOrEmpty(request.Address))
+                return BadRequest("Address is required.");
+
+            Console.WriteLine("incoming address: " + request.Address);
+            serverAdresses.Add(request.Address);
+            return Ok("Server registered successfully. " + request.Address);
         }
 
         [HttpGet("GetServers")]
@@ -25,5 +28,10 @@ namespace SelfRegistrationService
 
             return Ok(serverAdresses);
         }
+    }
+
+    public class RegisterRequest
+    {
+        public string Address { get; set; }
     }
 }
