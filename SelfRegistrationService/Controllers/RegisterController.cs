@@ -12,6 +12,7 @@ namespace SelfRegistrationService
         [HttpPost("Register")]
         public IActionResult RegisterServer([FromBody] string address)
         {
+            Console.WriteLine("incoming address: " + address);
             serverAdresses.Add(address);
             return Ok("Server registered successfully.");
         }
