@@ -20,7 +20,7 @@ namespace SelfRegistrationService
             return Ok("Server registered successfully. " + request.Address);
         }
 
-        [HttpGet("GetServers")]
+        [HttpGet("GetServers"), Authorize]
         public IActionResult GetServers()
         {
             if (serverAdresses.Count == 0)
